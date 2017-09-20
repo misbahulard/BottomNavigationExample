@@ -25,6 +25,10 @@ public class SegitigaSamaKaki extends Segitiga {
         return sisiMiring;
     }
 
+    public void setSisiMiring() {
+        this.sisiMiring = Math.sqrt(Math.pow((getAlas() / 2), 2) + Math.pow(getTinggi(), 2));
+    }
+
     public void setSisiMiring(double sisiMiring) {
         this.sisiMiring = sisiMiring;
     }
