@@ -2,19 +2,24 @@ package com.example.misbahulard.bottomnavigationexample;
 
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+import com.example.misbahulard.bottomnavigationexample.fragment.SegitigaFragment;
 
-    private TextView tvMessage;
+public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
+            int id = item.getItemId();
+
+            switch (id) {
                 case R.id.navigation_lingkaran:
                     // set fragment
                     return true;
@@ -22,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
                     // set fragment
                     return true;
                 case R.id.navigation_segitiga:
-                    // set fragment
+                    setFragment(new SegitigaFragment());
                     return true;
             }
 
@@ -35,8 +40,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        tvMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);
+    }
+
+    private void setFragment(Fragment fragment) {
+        getSupportFragmentManager().beginTransaction().replace(R.id.fl_main, fragment).commit();
     }
 }
